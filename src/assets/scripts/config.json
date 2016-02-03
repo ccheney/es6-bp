@@ -1,0 +1,9 @@
+{
+    "vendorPaths": [
+        {
+            "cwd": "./src/assets/vendor/structurejs/js",
+            "src": "**/*.js",
+            "expose": "structurejs"
+        }
+    ]
+}

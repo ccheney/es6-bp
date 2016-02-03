@@ -1,0 +1,19 @@
+{
+  "generator-nerdery": {
+    "title": "Nerdery.BeerApp",
+    "name": "nerdery-beerapp",
+    "markup": "MarkupHandlebars",
+    "markupFeatures": [],
+    "styles": "StylesSass",
+    "stylesFeatures": [],
+    "scripts": "ScriptsVanilla",
+    "scriptsNamespace": "NRD",
+    "scriptsFeatures": [],
+    "framework": "FrameworkVanilla",
+    "frameworkFeatures": [],
+    "generated": {
+      "version": "3.1.0",
+      "timestamp": "1/29/2016, 9:31:11 PM"
+    }
+  }
+}

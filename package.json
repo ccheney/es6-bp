@@ -1,0 +1,68 @@
+{
+  "name": "nerdery-beerapp",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "browser": {
+    "fastclick": "./src/assets/vendor/fastclick/lib/fastclick.js"
+  },
+  "browserify-shim": {
+    "jquery": "global:$",
+    "form2js": "global:form2js",
+    "handlebars": "global:Handlebars",
+    "fastclick": "FastClick"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "dependencies": {
+    "handlebars": "4.0.4",
+    "handlebars-layouts": "3.1.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.1.2",
+    "babel-eslint": "4.1.4",
+    "babelify": "6.4.0",
+    "browserify": "12.0.1",
+    "browserify-shim": "3.8.11",
+    "cca": "^0.7.3",
+    "cordova": "^5.3.1",
+    "estraverse": "4.1.1",
+    "grunt": "0.4.5",
+    "grunt-browserify": "4.0.1",
+    "grunt-contrib-clean": "0.6.0",
+    "grunt-contrib-concat": "0.5.1",
+    "grunt-contrib-connect": "0.11.2",
+    "grunt-contrib-copy": "0.8.2",
+    "grunt-contrib-cssmin": "0.12.2",
+    "grunt-contrib-handlebars": "0.11.0",
+    "grunt-contrib-requirejs": "0.4.4",
+    "grunt-contrib-uglify": "0.10.0",
+    "grunt-contrib-watch": "0.6.1",
+    "grunt-contrib-yuidoc": "0.10.0",
+    "grunt-cordovacli": "^0.8.2",
+    "grunt-eslint": "17.3.1",
+    "grunt-force": "1.0.0",
+    "grunt-hb": "2.6.5",
+    "grunt-json": "^0.1.5",
+    "grunt-postcss": "^0.7.1",
+    "grunt-prettify": "0.4.0",
+    "grunt-sass": "1.1.0",
+    "grunt-string-replace": "1.2.0",
+    "grunt-text-replace": "0.4.0",
+    "grunt-usemin": "3.1.1",
+    "grunt-wiredep": "2.0.0",
+    "handlebars": "4.0.4",
+    "jit-grunt": "0.9.1",
+    "load-grunt-tasks": "3.3.0",
+    "remapify": "2.1.0",
+    "shelljs": "0.5.3",
+    "swagger-mock-api": "^1.5.0",
+    "time-grunt": "1.2.2"
+  },
+  "scripts": {
+    "postinstall": "node tools/npm-postinstall"
+  }
+}
