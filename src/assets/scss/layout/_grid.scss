@@ -1,0 +1,41 @@
+/* ----------------------------------------------------------------------
+ grid - horizontal rhythm
+---------------------------------------------------------------------- */
+$grid-GUTTER_WIDTH: 20px;
+$grid-COLUMN_COUNT: 12;
+
+.grid {
+    display: flex;
+    width: 100%;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+}
+
+.grid + .grid {
+    padding-top: $grid-GUTTER_WIDTH;
+}
+
+.grid-col {
+    padding-right: $grid-GUTTER_WIDTH / 2;
+    padding-left: $grid-GUTTER_WIDTH / 2;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+}
+
+@for $i from 1 through $grid-COLUMN_COUNT {
+    .grid-col_#{$i}of#{$grid-COLUMN_COUNT} {
+        width: calc((#{$i} / #{$grid-COLUMN_COUNT}) * 100%);
+    }
+
+    .mix-grid-col_prefix#{$i}of#{$grid-COLUMN_COUNT} {
+        margin-left: calc((#{$i} / #{$grid-COLUMN_COUNT}) * 100%);
+    }
+
+    .mix-grid-col_suffix#{$i}of#{$grid-COLUMN_COUNT} {
+        margin-right: calc((#{$i} / #{$grid-COLUMN_COUNT}) * 100%);
+    }
+}
+
+.mix-grid-col_fullBleed {
+    padding: 0;
+}

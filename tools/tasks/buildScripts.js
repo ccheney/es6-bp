@@ -2,8 +2,8 @@
 'use strict';
 
 module.exports = function(grunt) {
-    var shouldMinify = !grunt.option('dev');
     var remapify = require('remapify');
+    var shouldMinify = !grunt.option('dev');
     var paths = require('../../src/assets/scripts/config.json');
 
     // Help Grunt find the right plugins at runtime
@@ -16,41 +16,24 @@ module.exports = function(grunt) {
     grunt.config.set('uglify', undefined);
 
     grunt.config.merge({
+
+        /**
+         * Takes our CommonJS files and compiles them together.
+         */
         browserify: {
-            web: {
+            buildScripts: {
                 options: {
                     browserifyOptions: {
-                        debug: grunt.option('prod') ? true : false
+                        debug: shouldMinify
                     },
                     preBundleCB: function(bundle) {
                         bundle.plugin(remapify, paths.vendorPaths);
                     },
-                    transform: [['babelify', { stage: 0 }]]
+                    transform: [['babelify', { 'stage': 0 }]]
                 },
                 files: {
-                    '<%= env.DIR_DEST %>/assets/scripts/main.js': ['<%= env.DIR_SRC %>/assets/scripts/main.js']
+                    '<%= env.DIR_TMP %>/assets/scripts/main.js': ['<%= env.DIR_SRC %>/assets/scripts/main.js']
                 }
-            }
-        },
-
-        // Copies static files for non-optimized builds
-        copy: {
-            buildScripts: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= env.DIR_SRC %>',
-                    dest: '<%= env.DIR_DEST %>',
-                    src: [
-                        'assets/vendor/**/*.js',
-                        'assets/data/**/*.json'
-                    ]
-                }]
-            }
-        },
-
-        uglify: {
-            options: {
-                mangle: true
             }
         },
 
@@ -58,8 +41,8 @@ module.exports = function(grunt) {
         // the appropriate `concat` and `uglify` configuration.
         useminPrepare: {
             options: {
-                root: '<%= env.DIR_DEST %>',
-                staging: '<%= env.DIR_SRC %>',
+                root: '<%= env.DIR_TMP %>',
+                staging: '<%= env.DIR_TMP %>',
                 dest: '<%= env.DIR_DEST %>',
                 flow: {
                     buildScripts: {
@@ -70,7 +53,51 @@ module.exports = function(grunt) {
                 }
             },
             buildScripts: ['<%= env.DIR_SRC %>/**/*.hbs']
+        },
+
+        concat: {
+            options: {
+                separator: ';'
+            }
+        },
+
+        uglify: {
+            options: {
+                warnings: false,
+                mangle: true
+            }
+        },
+
+        // Copies static files for non-optimized builds
+        copy: {
+            buildScriptsDev: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= env.DIR_SRC %>',
+                        dest: '<%= env.DIR_DEST %>',
+                        src: ['assets/vendor/**/*.{map,js}']
+                    },
+                    {
+                        expand: true,
+                        cwd: '<%= env.DIR_TMP %>',
+                        dest: '<%= env.DIR_DEST %>',
+                        src: ['assets/scripts/main.js']
+                    }
+                ]
+            },
+            buildScriptsProd: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= env.DIR_SRC %>',
+                        dest: '<%= env.DIR_TMP %>',
+                        src: ['assets/vendor/**/*.{map,js}']
+                    }
+                ]
+            }
         }
+
     });
 
     grunt.registerTask('scrub:buildScripts', function() {
@@ -89,16 +116,17 @@ module.exports = function(grunt) {
     grunt.registerTask('buildScripts',
         shouldMinify
             ? [
-                'browserify',
-                'copy:buildScripts',
-                'useminPrepare:buildScripts',
-                'scrub:buildScripts',
-                'concat:generated',
-                'uglify:generated'
-            ]
+            'browserify:buildScripts',
+            'copy:buildScriptsProd',
+            'useminPrepare:buildScripts',
+            'scrub:buildScripts',
+            'concat:generated',
+            'uglify:generated'
+        ]
             : [
-                'browserify',
-                'copy:buildScripts'
-            ]
+            'browserify:buildScripts',
+            'copy:buildScriptsDev'
+        ]
     );
+
 };

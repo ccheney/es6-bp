@@ -1,0 +1,15 @@
+/* ----------------------------------------------------------------------
+ median - centering util
+---------------------------------------------------------------------- */
+.median {
+    display: flex;
+    align-items: center;
+}
+
+.median_spaceFirst > *:first-child {
+    margin-right: 16px;
+}
+
+.median_spaceLast > *:last-child {
+    margin-left: 16px;
+}

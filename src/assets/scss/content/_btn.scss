@@ -1,0 +1,19 @@
+/* ----------------------------------------------------------------------
+ button - button presentation
+---------------------------------------------------------------------- */
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    box-sizing: border-box;
+    font: 400 12px/1.0 $FONT;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 1.5px;
+    background-color: #000000;
+}
+
+.btn + .btn {
+    margin-left: 10px;
+}

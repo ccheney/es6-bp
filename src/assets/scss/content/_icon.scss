@@ -1,0 +1,24 @@
+/* ----------------------------------------------------------------------
+ icon - intrinsic ratio icon containers
+---------------------------------------------------------------------- */
+.icon {
+    display: block;
+    width: 100%;
+    vertical-align: middle;
+    position: relative;
+}
+
+.icon::before {
+    display: inherit;
+    width: inherit;
+    padding-bottom: 100%;
+    content: "";
+}
+
+.icon-inner {
+    width: inherit;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

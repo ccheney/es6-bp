@@ -74,7 +74,18 @@ module.exports = function(grunt) {
                 files: ['<%= env.DIR_SRC %>/templates/precompile/**/*'],
                 tasks: ['precompileJst']
             }
+        },
+
+        notify_hooks: {
+            options: {
+                enabled: true,
+                max_jshint_notifications: 5, // maximum number of notifications from jshint output
+                title: '<%= pkg.name %>', // defaults to the name in package.json, or will use project directory's name
+                success: true, // whether successful grunt executions should be notified automatically
+                duration: 3 // the duration of notification in seconds, for `notify-send only
+            }
         }
+
     });
 
     // -- Tasks ----------------------------------------------------------------
@@ -113,4 +124,8 @@ module.exports = function(grunt) {
         ['build', 'connectHttp', 'watch']);
 
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-notify');
+
+    // This is required if you use any options.
+    grunt.task.run('notify_hooks');
 };

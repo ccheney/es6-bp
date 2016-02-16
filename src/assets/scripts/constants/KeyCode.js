@@ -79,6 +79,14 @@ class KeyCode {
     static DOWN_ARROW = 40;
 
     /**
+     *
+     * @property SPACE
+     * @type {number}
+     * @static
+     */
+    static SPACE = 32;
+
+    /**
      * TODO: YUIDoc_comment
      *
      * @property ESCAPE_KEY

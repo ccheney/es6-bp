@@ -1,0 +1,27 @@
+/* ----------------------------------------------------------------------
+ frame - perfectly centered container
+---------------------------------------------------------------------- */
+.frame {
+    display: flex;
+    height: calc(100vh - #{$site-LANDMARK_HEIGHT});
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+}
+
+.frame_offset {
+    height: calc(100vh - (#{$site-LANDMARK_HEIGHT} * 2));
+}
+
+.frame_shaded {
+    background-color: #d2d2d2;
+}
+
+.mix-frame_lg {
+    padding: 0 15%;
+}
+
+.mix-frame_img > img {
+    max-height: 70vh;
+}

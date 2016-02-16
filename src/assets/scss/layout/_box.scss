@@ -1,0 +1,28 @@
+/* ----------------------------------------------------------------------
+ box - padded layout containers
+---------------------------------------------------------------------- */
+.box {
+    display: flex;
+    padding: 20px;
+}
+
+.box + .box {
+    padding-top: 0;
+}
+
+.box_inset {
+    padding: 10%;
+}
+
+.mix-box_col {
+    flex-direction: column;
+}
+
+.mix-box_end {
+    justify-content: flex-end;
+}
+
+.mix-box_trim {
+    padding-top: 0;
+    padding-bottom: 0;
+}

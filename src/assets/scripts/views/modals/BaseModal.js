@@ -13,25 +13,6 @@ import ModalEvent from '../../events/ModalEvent';
 class BaseModal extends DOMElement {
 
     /**
-     * Holds a reference to the modal container so we can stop event
-     * bubbling to the body through the DOM.
-     *
-     * @property _$modalContent
-     * @type {jQuery}
-     * @protected
-     */
-    _$modalContent = null;
-
-    /**
-     * Holds a reference to the modal's sneeze guard/background
-     *
-     * @property _$modalUnderlay
-     * @type {jQuery}
-     * @public
-     */
-    _$modalUnderlay = null;
-
-    /**
      * If this value is set to true the user cannot click outside of the modal or
      * click the ESC key to close the modal. The user must click one of the buttons
      * in the modal.
@@ -40,7 +21,7 @@ class BaseModal extends DOMElement {
      * @type {boolean}
      * @public
      */
-    forceInteraction = false;
+    forceInteraction = true;
 
     /**
      * If this value is set to false the page/body will not scroll.
@@ -55,8 +36,9 @@ class BaseModal extends DOMElement {
 
     /**
      * A reference to the data that was passed into the constructor of the modal.
-     * This data object will also be dispatched with the ModalEvent.{{#crossLink "ModalEvent/ACCEPT:event"}}{{/crossLink}} and
-     * {{#crossLink "ModalEvent/REJECT:event"}}{{/crossLink}}.
+     * This data object will also be dispatched with the
+     * ModalEvent.{{#crossLink "ModalEvent/ACCEPT:event"}}{{/crossLink}}
+     * and {{#crossLink "ModalEvent/REJECT:event"}}{{/crossLink}}.
      *
      * @property modalData
      * @type {any}
@@ -64,54 +46,69 @@ class BaseModal extends DOMElement {
      */
     modalData = null;
 
-    constructor(template, data) {
-        super(template, data);
+    /**
+     * Holds a reference to the modal container so we can stop event
+     * bubbling to the body through the DOM.
+     *
+     * @property _$modalContent
+     * @type {jQuery}
+     * @
+     */
+    _$modalContent = null;
 
-        this.modalData = data;
+    /**
+     * Holds a reference to the modal's sneeze guard/background
+     *
+     * @property _$modalUnderlay
+     * @type {jQuery}
+     * @
+     */
+    _$modalUnderlay = null;
+
+    constructor(template = null, data = null) {
+        super(template, data);
     }
 
     /**
      * @overridden DOMElement.create
      */
-    create(template, data) {
+    create(template = null, data = null) {
         super.create(template, data);
 
         this._$modalContent = this.$element.find('.js-modal-content');
         this._$modalUnderlay = this.$element.find('.js-modal-underlay');
     }
 
-    /**
-     * @overridden DOMElement.enable
-     */
     enable() {
-        if (this.isEnabled === true) { return this; }
+        if (this.isEnabled === true) { return; }
 
         this._$modalUnderlay.addEventListener('click', this._onClickModalUnderlay, this);
         this._$modalContent.addEventListener('click', '.js-modal-reject', this._onRejectModal, this);
         this._$modalContent.addEventListener('click', '.js-modal-accept', this._onAcceptModal, this);
+        this._$modalContent.addEventListener('click', '.js-modal-close', this._onCloseModal, this);
 
-        return super.enable();
+        super.enable();
     }
 
-    /**
-     * @overridden DOMElement.disable
-     */
     disable() {
-        if (this.isEnabled === false) { return this; }
+        if (this.isEnabled === false) { return; }
 
         this._$modalUnderlay.removeEventListener('click', this._onClickModalUnderlay, this);
         this._$modalContent.removeEventListener('click', '.js-modal-reject', this._onRejectModal, this);
         this._$modalContent.removeEventListener('click', '.js-modal-accept', this._onAcceptModal, this);
+        this._$modalContent.removeEventListener('click', '.js-modal-close', this._onCloseModal, this);
 
-        return super.disable();
+        super.enable();
     }
 
     //////////////////////////////////////////////////////////////////////////////////
-    // HELPER METHOD
+    // HELPER METHODS
     //////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Dispatches a global {{#crossLink "ModalEvent"}}{{/crossLink}}.{{#crossLink "ModalEvent/REMOVE:event"}}{{/crossLink}} event so the {{#crossLink "ModalController"}}{{/crossLink}} can remove this modal.
+     * Dispatches a global
+     * {{#crossLink "ModalEvent"}}{{/crossLink}}.{{#crossLink "ModalEvent/REMOVE:event"}}{{/crossLink}}
+     * event so the {{#crossLink "ModalController"}}{{/crossLink}} can remove this modal.
      *
      * @method close
      * @public
@@ -127,11 +124,12 @@ class BaseModal extends DOMElement {
     /**
      * This method will be called when a rejected button (js-modal-reject) is clicked in the modal.
      * Override this method to add or change the functionality.
-     * Dispatches the {{#crossLink "ModalEvent"}}{{/crossLink}}.{{#crossLink "ModalEvent/REJECT:event"}}{{/crossLink}} event.
+     * Dispatches the
+     * {{#crossLink "ModalEvent"}}{{/crossLink}}.{{#crossLink "ModalEvent/REJECT:event"}}{{/crossLink}} event.
      *
      * @method _onRejectModal
      * @param event {JQueryEventObject}
-     * @protected
+     * @
      */
     _onRejectModal(event) {
         event.preventDefault();
@@ -144,11 +142,12 @@ class BaseModal extends DOMElement {
     /**
      * This method will be called when a accepted button (js-modal-accept) is clicked in the modal.
      * Override this method to add or change the functionality.
-     * Dispatches the {{#crossLink "ModalEvent"}}{{/crossLink}}.{{#crossLink "ModalEvent/ACCEPT:event"}}{{/crossLink}} event.
+     * Dispatches the
+     * {{#crossLink "ModalEvent"}}{{/crossLink}}.{{#crossLink "ModalEvent/ACCEPT:event"}}{{/crossLink}} event.
      *
      * @method _onAcceptModal
      * @param event {JQueryEventObject}
-     * @protected
+     * @
      */
     _onAcceptModal(event) {
         event.preventDefault();
@@ -160,11 +159,12 @@ class BaseModal extends DOMElement {
 
     /**
      * If the modal background is clicked on this method is called to close the modal.
-     * This method will not close the modal if the {{#crossLink "BaseModal/forceInteraction:property"}}{{/crossLink}} property is true.
+     * This method will not close the modal if the
+     * {{#crossLink "BaseModal/forceInteraction:property"}}{{/crossLink}} property is true.
      *
      * @method _onClickModalUnderlay
-     * @param event {JQueryEventObject}
-     * @protected
+     * @param event {jQueryEventObject}
+     * @
      */
     _onClickModalUnderlay(event) {
         event.preventDefault();
@@ -172,6 +172,19 @@ class BaseModal extends DOMElement {
         if (this.forceInteraction === false) {
             this.close();
         }
+    }
+
+    /**
+     * Closes the modal
+     *
+     * @method _onClickModalUnderlay
+     * @param event {jQueryEventObject}
+     * @
+     */
+    _onCloseModal(event) {
+        event.preventDefault();
+
+        this.close();
     }
 
 }

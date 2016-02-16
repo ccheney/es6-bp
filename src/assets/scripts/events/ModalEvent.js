@@ -10,6 +10,15 @@ import BaseEvent from 'structurejs/event/BaseEvent';
 class ModalEvent extends BaseEvent {
 
     /**
+     * Event to be dispatched when a modal needs to be added.
+     *
+     * @event ADD
+     * @type {string}
+     * @static
+     */
+    static ADD = 'ModalEvent.add';
+
+    /**
      * Event to be dispatched when a modal needs to be closed.
      *
      * @event REMOVE

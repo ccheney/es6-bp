@@ -1,0 +1,30 @@
+/* ----------------------------------------------------------------------
+ dialog - modal dialog presentation
+---------------------------------------------------------------------- */
+.dialog {
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+.dialog_center {
+    text-align: center;
+}
+
+.dialog > * {
+    padding: 19px 14px 14px 14px;
+    box-sizing: border-box;
+}
+
+.dialog-hd {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #000000;
+    font: 400 18px/1.0 $FONT;
+    text-align: left;
+    color: #000000;
+}
+
+.dialog-bd {
+    min-height: 130px;
+    font: 400 16px/1.66 $FONT;
+    color: #000000;
+}

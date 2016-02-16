@@ -1,0 +1,66 @@
+//----------------------------------------------------------------------
+// Utility mixins
+//----------------------------------------------------------------------
+@mixin wrapper () {
+    width: 1400px;
+    margin: 0 auto;
+}
+
+@mixin isVisuallyHidden () {
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    border: 0;
+    position: absolute;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+@mixin clearfix () {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+@mixin box-shadow ($side) {
+    @if $side == top {
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.26);
+    }
+    @else if $side == right {
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.26);
+    }
+    @else if $side == bottom {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+    }
+    @else if $side == left {
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.26);
+    }
+}
+
+/* ----------------------------------------------------------------------
+ Utility classes
+---------------------------------------------------------------------- */
+.u-isHidden {
+    display: none !important;
+}
+
+.u-isVisuallyHidden {
+    @include isVisuallyHidden();
+}
+
+.u-isScrollable {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.u-noScrolling {
+    width: 100%;
+    position: fixed;
+}

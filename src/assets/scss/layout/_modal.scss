@@ -1,0 +1,71 @@
+/* ----------------------------------------------------------------------
+ modal - full viewport overlay
+---------------------------------------------------------------------- */
+.modal {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.modal img {
+    max-height: 200px;
+}
+
+.modal ~ * > .site {
+    filter: blur(1px) saturate(0.3);
+}
+
+.modal-underlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    background: rgba(50, 50, 50, 0.5);
+    cursor: pointer;
+}
+
+.modal-inner {
+    @include box-shadow(bottom);
+    overflow: hidden;
+    position: relative;
+    z-index: 3;
+}
+
+.modal-inner_md {
+    max-width: 460px;
+    min-width: 400px;
+}
+
+.modal-inner-close {
+    width: 16px;
+    padding: 16px;
+    box-sizing: content-box;
+    position: absolute;
+    top: 0;
+    right: 0;
+    fill: #d3d3d3;
+}
+
+.mix-modal-inner_isScrollable {
+    max-height: 75vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mix-modal-inner_flat {
+    overflow: visible;
+    box-shadow: none;
+}

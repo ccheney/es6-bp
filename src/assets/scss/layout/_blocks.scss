@@ -1,0 +1,32 @@
+/* ----------------------------------------------------------------------
+ blocks - blocks object
+---------------------------------------------------------------------- */
+$blocks-GUTTER: 20px;
+$blocks-BLOCKS_COUNT_MIN: 2;
+$blocks-BLOCKS_COUNT_MAX: 6;
+
+.blocks {
+    display: flex;
+    margin-left: -$blocks-GUTTER;
+    flex-wrap: wrap;
+}
+
+.blocks > * {
+    padding-bottom: $blocks-GUTTER;
+    padding-left: $blocks-GUTTER;
+    box-sizing: border-box;
+}
+
+@for $i from $blocks-BLOCKS_COUNT_MIN through $blocks-BLOCKS_COUNT_MAX {
+    .blocks_#{$i}up > * {
+        width: calc(100% / #{$i});
+    }
+
+    .blocks_#{$i}up > *:nth-last-child(-n+#{$i}) {
+        padding-bottom: 0;
+    }
+}
+
+.mix-blocks_collapse {
+    margin-left: 0;
+}

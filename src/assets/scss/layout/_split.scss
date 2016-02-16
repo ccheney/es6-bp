@@ -1,0 +1,24 @@
+/* ----------------------------------------------------------------------
+ split - element spacing util
+---------------------------------------------------------------------- */
+.split {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.split_around {
+    justify-content: space-around;
+}
+
+.split_equally > * {
+    flex-basis: 50%;
+}
+
+.mix-split_center {
+    align-items: center;
+}
+
+.mix-split_onlyChild {
+    justify-content: flex-end;
+}
