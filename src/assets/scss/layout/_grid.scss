@@ -31,15 +31,47 @@ $grid-COLUMN_COUNT: 12;
 
 @for $i from 1 through $grid-COLUMN_COUNT {
     .grid-col_#{$i}of#{$grid-COLUMN_COUNT} {
-        width: calc((#{$i} / #{$grid-COLUMN_COUNT}) * 100%);
+        width: (($i / $grid-COLUMN_COUNT) * 100%);
     }
 
     .mix-grid-col_prefix#{$i}of#{$grid-COLUMN_COUNT} {
-        margin-left: calc((#{$i} / #{$grid-COLUMN_COUNT}) * 100%);
+        margin-left: (($i / $grid-COLUMN_COUNT) * 100%);
     }
 
     .mix-grid-col_suffix#{$i}of#{$grid-COLUMN_COUNT} {
-        margin-right: calc((#{$i} / #{$grid-COLUMN_COUNT}) * 100%);
+        margin-right: (($i / $grid-COLUMN_COUNT) * 100%);
+    }
+}
+
+@include breakpoint(SM) {
+    @for $i from 1 through $grid-COLUMN_COUNT {
+        .grid-col_#{$i}of#{$grid-COLUMN_COUNT}SM {
+            width: (($i / $grid-COLUMN_COUNT) * 100%);
+        }
+
+        .mix-grid-col_prefix#{$i}of#{$grid-COLUMN_COUNT}SM {
+            margin-left: (($i / $grid-COLUMN_COUNT) * 100%);
+        }
+
+        .mix-grid-col_suffix#{$i}of#{$grid-COLUMN_COUNT}SM {
+            margin-right: (($i / $grid-COLUMN_COUNT) * 100%);
+        }
+    }
+}
+
+@include breakpoint(MD) {
+    @for $i from 1 through $grid-COLUMN_COUNT {
+        .grid-col_#{$i}of#{$grid-COLUMN_COUNT}MD {
+            width: (($i / $grid-COLUMN_COUNT) * 100%);
+        }
+
+        .mix-grid-col_prefix#{$i}of#{$grid-COLUMN_COUNT}MD {
+            margin-left: (($i / $grid-COLUMN_COUNT) * 100%);
+        }
+
+        .mix-grid-col_suffix#{$i}of#{$grid-COLUMN_COUNT}MD {
+            margin-right: (($i / $grid-COLUMN_COUNT) * 100%);
+        }
     }
 }
 
