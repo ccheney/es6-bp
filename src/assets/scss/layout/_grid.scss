@@ -5,10 +5,14 @@ $grid-GUTTER_WIDTH: 20px;
 $grid-COLUMN_COUNT: 12;
 
 .grid {
+    display: block; /* flexbox fallback */
     display: flex;
     width: 100%;
     flex: 0 1 auto;
+    margin-top: #{-$grid-GUTTER_WIDTH};
+    margin-left: #{-$grid-GUTTER_WIDTH};
     flex-wrap: wrap;
+    font-size: 0; /* flexbox fallback */
 }
 
 .grid + .grid {
@@ -16,10 +20,13 @@ $grid-COLUMN_COUNT: 12;
 }
 
 .grid-col {
-    padding-right: $grid-GUTTER_WIDTH / 2;
-    padding-left: $grid-GUTTER_WIDTH / 2;
     box-sizing: border-box;
+    display: inline-block; /* flexbox fallback */
+    padding-top: $grid-GUTTER_WIDTH;
+    padding-left: $grid-GUTTER_WIDTH;
     flex: 0 0 auto;
+    font-size: $FONT_SIZE; /* flexbox fallback */
+    vertical-align: top; /* flexbox fallback */
 }
 
 @for $i from 1 through $grid-COLUMN_COUNT {
