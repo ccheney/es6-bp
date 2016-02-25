@@ -1,0 +1,46 @@
+/*----------------------------------------------------------------------------
+Mixin - Breakpoint
+
+Mixins for Mediaqueries Major Breakpoints
+----------------------------------------------------------------------------*/
+
+//----------------------------------------------------------------------
+// Default values can be overridden in vars
+//----------------------------------------------------------------------
+$SCREEN_XS: 480px !default;
+$SCREEN_SM: 768px !default;
+$SCREEN_MD: 960px !default;
+$SCREEN_LG: 1260px !default;
+
+$BREAKPOINT_SUBTRACTOR: 1px;
+
+//----------------------------------------------------------------------
+// Default value can be overridden for legacy support
+//----------------------------------------------------------------------
+$MEDIA_QUERIES: true !default;
+
+@mixin breakpoint($POINT) {
+    @if $MEDIA_QUERIES {
+
+        @if $POINT == XSM {
+            @media (min-width: $SCREEN_XS) { @content; } // 480px
+        } @else if $POINT == XSM_INVERSE {
+            @media (max-width: $SCREEN_XS - $BREAKPOINT_SUBTRACTOR) { @content; } // UP TO 480px
+        } @else if $POINT == SM {
+            @media (min-width: $SCREEN_SM) { @content; } // 768px
+        } @else if $POINT == SM_INVERSE {
+            @media (max-width: $SCREEN_SM - $BREAKPOINT_SUBTRACTOR) { @content; } // UP TO 768px
+        } @else if $POINT == MD {
+            @media (min-width: $SCREEN_MD) { @content; } // 960px
+        } @else if $POINT == MD_INVERSE {
+            @media (max-width: $SCREEN_MD - $BREAKPOINT_SUBTRACTOR) { @content; } // UP TO 960px
+        } @else if $POINT == LG {
+            @media (min-width: $SCREEN_LG) { @content; } // 1260px
+        } @else if $POINT == LG_INVERSE {
+            @media (max-width: $SCREEN_LG - $BREAKPOINT_SUBTRACTOR) { @content; } // UP TO 1260px
+        }
+
+    } @else {
+        @content;
+    }
+}

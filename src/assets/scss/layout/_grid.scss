@@ -8,7 +8,10 @@ $grid-COLUMN_COUNT: 12;
     display: flex;
     width: 100%;
     flex: 0 1 auto;
+    margin-top: #{-$grid-GUTTER_WIDTH};
+    margin-left: #{-$grid-GUTTER_WIDTH};
     flex-wrap: wrap;
+    font-size: 0; /* flexbox fallback */
 }
 
 .grid + .grid {
@@ -16,23 +19,58 @@ $grid-COLUMN_COUNT: 12;
 }
 
 .grid-col {
-    padding-right: $grid-GUTTER_WIDTH / 2;
-    padding-left: $grid-GUTTER_WIDTH / 2;
     box-sizing: border-box;
+    display: inline-block; /* flexbox fallback */
+    padding-top: $grid-GUTTER_WIDTH;
+    padding-left: $grid-GUTTER_WIDTH;
     flex: 0 0 auto;
+    font-size: $FONT_SIZE; /* flexbox fallback */
+    vertical-align: top; /* flexbox fallback */
 }
 
 @for $i from 1 through $grid-COLUMN_COUNT {
     .grid-col_#{$i}of#{$grid-COLUMN_COUNT} {
-        width: calc((#{$i} / #{$grid-COLUMN_COUNT}) * 100%);
+        width: (($i / $grid-COLUMN_COUNT) * 100%);
     }
 
     .mix-grid-col_prefix#{$i}of#{$grid-COLUMN_COUNT} {
-        margin-left: calc((#{$i} / #{$grid-COLUMN_COUNT}) * 100%);
+        margin-left: (($i / $grid-COLUMN_COUNT) * 100%);
     }
 
     .mix-grid-col_suffix#{$i}of#{$grid-COLUMN_COUNT} {
-        margin-right: calc((#{$i} / #{$grid-COLUMN_COUNT}) * 100%);
+        margin-right: (($i / $grid-COLUMN_COUNT) * 100%);
+    }
+}
+
+@include breakpoint(SM) {
+    @for $i from 1 through $grid-COLUMN_COUNT {
+        .grid-col_#{$i}of#{$grid-COLUMN_COUNT}SM {
+            width: (($i / $grid-COLUMN_COUNT) * 100%);
+        }
+
+        .mix-grid-col_prefix#{$i}of#{$grid-COLUMN_COUNT}SM {
+            margin-left: (($i / $grid-COLUMN_COUNT) * 100%);
+        }
+
+        .mix-grid-col_suffix#{$i}of#{$grid-COLUMN_COUNT}SM {
+            margin-right: (($i / $grid-COLUMN_COUNT) * 100%);
+        }
+    }
+}
+
+@include breakpoint(MD) {
+    @for $i from 1 through $grid-COLUMN_COUNT {
+        .grid-col_#{$i}of#{$grid-COLUMN_COUNT}MD {
+            width: (($i / $grid-COLUMN_COUNT) * 100%);
+        }
+
+        .mix-grid-col_prefix#{$i}of#{$grid-COLUMN_COUNT}MD {
+            margin-left: (($i / $grid-COLUMN_COUNT) * 100%);
+        }
+
+        .mix-grid-col_suffix#{$i}of#{$grid-COLUMN_COUNT}MD {
+            margin-right: (($i / $grid-COLUMN_COUNT) * 100%);
+        }
     }
 }
 
