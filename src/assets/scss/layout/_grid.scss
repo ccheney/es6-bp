@@ -5,7 +5,6 @@ $grid-GUTTER_WIDTH: 20px;
 $grid-COLUMN_COUNT: 12;
 
 .grid {
-    display: block; /* flexbox fallback */
     display: flex;
     width: 100%;
     flex: 0 1 auto;
