@@ -4,7 +4,7 @@
 module.exports = function(grunt) {
     var shouldOpen = grunt.option('open');
     var path = require('path');
-    var mockApi = require('swagger-mock-api');
+    //var mockApi = require('swagger-mock-api');
 
     grunt.config.merge({
         // Launches http-server
