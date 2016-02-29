@@ -13,7 +13,9 @@ module.exports = function(grunt) {
                 options: {
                     paths: '<%= env.DIR_SRC %>/assets/scripts',
                     outdir: '<%= env.DIR_DOCS %>',
-                    themedir: './node_modules/yuidoc-friendly-theme'
+                    themedir: 'tools/cache/yuidoc-friendly-theme',
+                    extension: '.js',
+                    exclude: '<%= env.DIR_SRC %>/assets/vendor'
                 }
             }
         }
