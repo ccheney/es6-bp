@@ -19,7 +19,7 @@
     ]
   },
   "dependencies": {
-    "handlebars": "4.0.4",
+    "handlebars": "4.7.6",
     "handlebars-layouts": "3.1.2"
   },
   "devDependencies": {
@@ -53,7 +53,7 @@
     "grunt-text-replace": "0.4.0",
     "grunt-usemin": "3.1.1",
     "grunt-wiredep": "2.0.0",
-    "handlebars": "4.0.4",
+    "handlebars": "4.7.6",
     "jit-grunt": "0.9.1",
     "load-grunt-tasks": "3.3.0",
     "remapify": "2.1.0",
